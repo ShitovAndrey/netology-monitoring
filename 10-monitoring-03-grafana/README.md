@@ -46,6 +46,6 @@ node_memory_MemAvailable_bytes{instance="nodeexporter:9100", job="nodeexporter"}
 
 **<em>Сохраните ваш Dashboard. Для этого перейдите в настройки Dashboard, выберите в боковом меню «JSON MODEL». Далее скопируйте отображаемое json-содержимое в отдельный файл и сохраните его.</em>**  
 
-Ссылка на JSON Model дашборда: [first_dashboard.json](/first_dashboard.json)
+Ссылка на JSON Model дашборда: [first_dashboard.json](/10-monitoring-03-grafana/first_dashboard.json)
 
 ---
