@@ -1,0 +1,16 @@
+variables:
+  IMAGE_FULL_NAME: "redlinx.gitlab.yandexcloud.net:5050/andreyshitov/netology/hello:gitlab-$CI_COMMIT_SHORT_SHA"
+
+stages:
+  - build
+
+build:
+  tags: [shell]
+  stage: build
+  script: |
+    # Login to registry
+    echo "$GITLAB_REG_TOKEN" | sudo docker login --username "$GITLAB_REG_USERNAME" --password-stdin redlinx.gitlab.yandexcloud.net:5050
+    
+    # Build and push image
+    sudo docker build -t "${IMAGE_FULL_NAME}" .
+    sudo docker push "${IMAGE_FULL_NAME}"

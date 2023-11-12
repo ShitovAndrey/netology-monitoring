@@ -1,0 +1,71 @@
+[0KRunning with gitlab-runner 16.5.0 (853330f9)[0;m
+[0K  on gitlab-runner run NJB7k_91m, system ID: s_f29142b064c3[0;m
+section_start:1699791151:prepare_executor[0K[0K[36;1mPreparing the "shell" executor[0;m[0;m
+[0KUsing Shell (bash) executor...[0;m
+section_end:1699791151:prepare_executor[0Ksection_start:1699791151:prepare_script[0K[0K[36;1mPreparing environment[0;m[0;m
+Running on nx-glr001...
+section_end:1699791152:prepare_script[0Ksection_start:1699791152:get_sources[0K[0K[36;1mGetting source from Git repository[0;m[0;m
+[32;1mFetching changes with git depth set to 20...[0;m
+Reinitialized existing Git repository in /home/gitlab-runner/builds/NJB7k_91m/0/AndreyShitov/netology/.git/
+[32;1mChecking out 53a5e1e0 as detached HEAD (ref is main)...[0;m
+[32;1mSkipping Git submodules setup[0;m
+section_end:1699791152:get_sources[0Ksection_start:1699791152:step_script[0K[0K[36;1mExecuting "step_script" stage of the job script[0;m[0;m
+[32;1m$ # Login to registry # collapsed multi-line command[0;m
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  124.9kB
+Step 1/9 : FROM centos:centos7
+ ---> eeb6ee3f44bd
+Step 2/9 : RUN yum -y install wget make gcc openssl-devel bzip2-devel libffi-devel &&     cd /tmp/ &&     wget https://www.python.org/ftp/python/3.7.9/Python-3.7.9.tgz &&     tar xzf Python-3.7.9.tgz &&     cd Python-3.7.9 &&     ./configure --enable-optimizations &&     make altinstall &&     ln -sfn /usr/local/bin/python3.7 /usr/bin/python3.7 &&     ln -sfn /usr/local/bin/pip3.7 /usr/bin/pip3.7 &&     ln -s /usr/local/bin/pip3.7 /usr/bin/pip
+ ---> Using cache
+ ---> 15c8ca8deee9
+Step 3/9 : COPY requirements.txt /tmp/
+ ---> Using cache
+ ---> 9b8834c7557e
+Step 4/9 : RUN  pip install --upgrade pip &&      pip install -r /tmp/requirements.txt
+ ---> Using cache
+ ---> b2e504a68b04
+Step 5/9 : RUN     mkdir /python_api
+ ---> Using cache
+ ---> dc98c6b310f2
+Step 6/9 : COPY    python-api.py /python_api/
+ ---> Using cache
+ ---> 5a8ee2bae08a
+Step 7/9 : RUN rm -rf /root/.cache/pip ;     rm -rf /var/cache/yum ;     rm -rf /tmp/Python-3.9.1.tgz ;     rm -rf /tmp/requirements.txt
+ ---> Using cache
+ ---> 9a8b08da7bd6
+Step 8/9 : WORKDIR /python_api/
+ ---> Using cache
+ ---> 4e2fd60438a9
+Step 9/9 : CMD  [ "/usr/bin/python3.7", "python-api.py" ]
+ ---> Using cache
+ ---> dc1bf822484d
+Successfully built dc1bf822484d
+Successfully tagged redlinx.gitlab.yandexcloud.net:5050/andreyshitov/netology/hello:gitlab-53a5e1e0
+The push refers to repository [redlinx.gitlab.yandexcloud.net:5050/andreyshitov/netology/hello]
+90a4d1e05b27: Preparing
+4acf74076ae5: Preparing
+d802b5d2f608: Preparing
+32433c828e4d: Preparing
+bb9ab88358a8: Preparing
+173c2a9f8d54: Preparing
+174f56854903: Preparing
+173c2a9f8d54: Waiting
+174f56854903: Waiting
+32433c828e4d: Layer already exists
+d802b5d2f608: Layer already exists
+90a4d1e05b27: Layer already exists
+4acf74076ae5: Layer already exists
+bb9ab88358a8: Layer already exists
+173c2a9f8d54: Layer already exists
+174f56854903: Layer already exists
+gitlab-53a5e1e0: digest: sha256:31e6518c8b3eaed64565d44d3b10e58472cef2aa87bc2d07c742c9b1dabfcabb size: 1781
+section_end:1699791152:step_script[0Ksection_start:1699791152:cleanup_file_variables[0K[0K[36;1mCleaning up project directory and file based variables[0;m[0;m
+section_end:1699791152:cleanup_file_variables[0K[32;1mJob succeeded[0;m
